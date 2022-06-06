@@ -4,7 +4,7 @@ import { useCookies } from "react-cookie";
 function BarraNavegacao() {
   let search = window.location.search;
   let params = new URLSearchParams(search);
-  const [removeCookie] = useCookies(["user"]);
+  const [removeCookie, setCookie] = useCookies(["user"]);
 
   //Hardcodei os quadros pra testar
   const quadros = [{titulo:"Quadro daora"}, {titulo:"Outro Quadro"}, {titulo:"Olha so, um quadro"}]
@@ -19,22 +19,25 @@ function BarraNavegacao() {
       quadroSelecionado = parseInt(params.get("quadro"), 10);
   }
 
+  function handleRemoveCookie() {
+    setCookie("user", '', {path:'/'});
+  }
+
   return (
     <div className="barraNavegacao">
-
       {quadros.map((quadro, indice) => 
         <a className={indice===quadroSelecionado ? "quadro selecionado" : "quadro" }
         key={indice} href={'/?quadro='+indice.toString()}>
             {quadro.titulo}
         </a>)}
-      <a className="quadro criaQuadro" key='+' href={'/criaQuadro'}>
-          +
-      </a>
-      <a className="quadro logout"  href='/' key='logout' 
-      onClick={() => {removeCookie("user")}}>
-          Logout
-      </a>
-    </div>
+        <a className="quadro criaQuadro" key='+' href={'/criaQuadro'}>
+            +
+        </a>
+        <button className="quadro logout"  key='logout' 
+        onClick={() => {handleRemoveCookie()}}>
+            Logout
+        </button>
+      </div>
   )
 }
 
