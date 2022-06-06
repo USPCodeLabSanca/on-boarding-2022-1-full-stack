@@ -1,29 +1,36 @@
-body {
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-}
-
 #buttons-login-cadastrar {
     display: flex;
     flex-direction: row;
-    align-items: space-between;
+    justify-content: space-between;
+    width: 50%;
 }
 #buttons-login-cadastrar button {
     border-radius: 50px;
     border-color: transparent;
+    margin-bottom: 50px;
 }
 #buttons-login-cadastrar button:hover {
-    border-radius: 0px;
+    background-color: black;
+    color: white;
 }
 
 form {
     display: flex;
     flex-flow: column;
-    margin: auto;
+    width: 50%;
 }
 
 form label {
     color: white;
+    margin: 10px 10px 0 0;
+}
+form input {
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#logo-login {
+    width: 50%;
+    margin-top: 50px;
 }

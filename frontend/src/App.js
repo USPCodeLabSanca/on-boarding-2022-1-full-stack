@@ -3,6 +3,8 @@ import Condicional from './Components/Condicional';
 import MainPage from './MainPage';
 import LoginPage from './LoginPage';
 
+import { useCookies } from "react-cookie";
+
 
 const login = 'login';
 const mainPage = 'mainPage';
@@ -10,6 +12,7 @@ const mainPage = 'mainPage';
 function App() {
   const [currentPage, setPage] = useState(login);
   const [currentUser, setUser] = useState('');
+  const [cookies, setCookie] = useCookies(["user"]);
 
   function loginCallback(user) {
     if (user !== '')
@@ -19,16 +22,14 @@ function App() {
     }
   }
 
-  console.log(currentPage);
-
   return (
     <>
-      <Condicional if={currentPage === 'login'}>
+      <Condicional if={!cookies.user}>
         <LoginPage callback={loginCallback}/>
       </Condicional>
 
-      <Condicional if={currentPage === 'mainPage'}>
-        <MainPage user={currentUser}/>
+      <Condicional if={cookies.user}>
+        <MainPage user={cookies.user}/>
       </Condicional>
     </>
   );
