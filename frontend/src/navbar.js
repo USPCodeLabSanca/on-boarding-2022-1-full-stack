@@ -1,9 +1,12 @@
 import './navbar.css'
+import { useCookies } from "react-cookie";
 
 function BarraNavegacao() {
-  console.log("Renderizou barra navegação")
   let search = window.location.search;
   let params = new URLSearchParams(search);
+  const [removeCookie, setCookie] = useCookies(["user"]);
+
+  //Hardcodei os quadros pra testar
   const quadros = [{titulo:"Quadro daora"}, {titulo:"Outro Quadro"}, {titulo:"Olha so, um quadro"}]
 
   // Olha a variavel quadro no parametro get
@@ -16,26 +19,24 @@ function BarraNavegacao() {
       quadroSelecionado = parseInt(params.get("quadro"), 10);
   }
 
-  console.log(quadros.map((quadro, indice) => 
-  <p {...indice===quadroSelecionado? "className=quadro selecionado" : "className=quadro" }
-  key={indice}
-  >
-      {quadro.titulo}
-  </p>))
+  function handleRemoveCookie() {
+    setCookie("user", '', {path:'/'});
+  }
 
   return (
     <div className="barraNavegacao">
       {quadros.map((quadro, indice) => 
         <a className={indice===quadroSelecionado ? "quadro selecionado" : "quadro" }
-        key={indice} href={'/?quadro='+indice.toString()}
-        >
+        key={indice} href={'/?quadro='+indice.toString()}>
             {quadro.titulo}
         </a>)}
-        <a className="quadro criaQuadro"
-        key='+' href={'/criaQuadro'}
-        >
+        <a className="quadro criaQuadro" key='+' href={'/criaQuadro'}>
             +
         </a>
+        <button className="quadro logout"  key='logout' 
+        onClick={() => {handleRemoveCookie()}}>
+            Logout
+        </button>
       </div>
   )
 }

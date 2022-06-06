@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import Lista from "./Components/Lista"
 import './MainPage.css'
+import BarraNavegacao from './navbar'
 
 const MainPage = props => {
 
@@ -26,6 +27,8 @@ const MainPage = props => {
 
     return (
         <>
+            <BarraNavegacao />
+            <h1>PAGINA PRINCIPAL :)</h1>
             <p>User = {props.user}</p>
             <div className="listContainer">
                 {listas()}
