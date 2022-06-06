@@ -14,11 +14,12 @@ function App() {
   const [currentUser, setUser] = useState('');
   const [cookies, setCookie] = useCookies(["user"]);
 
+  //Essa função será chamada pela loginPage para mudar o login, temporariamente não tem nenhuma verificação ou autenticação
   function loginCallback(user) {
     if (user !== '')
     {
-      setPage(mainPage);
       setUser(user);
+      setPage(mainPage);
     }
   }
 
