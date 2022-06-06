@@ -24,7 +24,7 @@ function App() {
 
   return (
     <>
-      <Condicional if={!cookies.user}>
+      <Condicional if={!cookies.user || cookies.user == 'undefined'}>
         <LoginPage callback={loginCallback}/>
       </Condicional>
 
