@@ -28,7 +28,7 @@ const Lista = props => {
                 <div className="cardContainer">
                     {cards()}
                 </div>
-                <button class="newCardButton" onClick={addEmptyCard}>+</button>
+                <button className="newCardButton" onClick={addEmptyCard}>+</button>
             </div>
             
         </div>
