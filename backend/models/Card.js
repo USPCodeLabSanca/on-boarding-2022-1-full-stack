@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const cardSchema = mongoose.Schema({
+const CardSchema = mongoose.Schema({
     titulo: String,
     descricao: String,
     tags: [String],
@@ -9,7 +9,7 @@ const cardSchema = mongoose.Schema({
     lista: mongoose.ObjectId
 })
 
-module.exports = mongoose.model('Card', cardSchema)
+module.exports = mongoose.model('Card', CardSchema)
 
 // Ola
 // Tudo bom com você?
