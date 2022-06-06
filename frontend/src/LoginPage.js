@@ -28,7 +28,7 @@ const LoginPage = props => {
                 </form>
                 <br></br>
             <div id="buttons-login-cadastrar">
-                <button onClick={() => {handleCookie(user); props.callback(user)}}>LOGIN</button>
+                <button onClick={() => {handleCookie(user)}}>LOGIN</button>
                 <button onClick={() => {alert("Quero cadastrar")}}>Cadastrar</button>
             </div>
         </BackgroundLogin>

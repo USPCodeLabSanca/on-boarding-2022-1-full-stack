@@ -27,9 +27,11 @@ const MainPage = props => {
         <>
             <BarraNavegacao />
             <p>User = {props.user}</p>
-            <div className="listContainer">
-                {listas()}
-                <button className="newListButton" onClick={addEmptyList}>Nova Lista</button>
+            <div id="mainPageBackground">
+                
+                    {listas()}
+                    <button id="newListButton" onClick={addEmptyList}>Nova Lista</button>
+                
             </div>
         </>
     )
