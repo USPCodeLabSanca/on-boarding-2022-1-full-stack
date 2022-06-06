@@ -14,6 +14,22 @@
     color: white;
 }
 
+#loginDiv {
+    width: 100%;
+}
+
+#loginInput {
+    width: 100%;
+}
+
+#cat-image {
+    position: absolute;
+    width:5%;
+    margin-left: 10%;
+    margin-top: -1.55%;
+    
+}
+
 form {
     display: flex;
     flex-flow: column;
