@@ -1,0 +1,23 @@
+.quadro {
+    background-color: #0094B5;
+    padding: 1%;
+    color: white;
+    margin-left: 2%;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+    border-radius: 10px;
+    height: 3%;
+    text-decoration: none;
+}
+
+.selecionado {
+    background: #1F5B69;
+}
+
+.barraNavegacao {
+    display: flex;
+}
+
+.criaQuadro {
+    border-radius: 50%;
+}
