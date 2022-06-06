@@ -1,0 +1,29 @@
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+#buttons-login-cadastrar {
+    display: flex;
+    flex-direction: row;
+    align-items: space-between;
+}
+#buttons-login-cadastrar button {
+    border-radius: 50px;
+    border-color: transparent;
+}
+#buttons-login-cadastrar button:hover {
+    border-radius: 0px;
+}
+
+form {
+    display: flex;
+    flex-flow: column;
+    margin: auto;
+}
+
+form label {
+    color: white;
+}
