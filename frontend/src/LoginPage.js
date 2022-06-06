@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import { BackgroundLogin, BodyLoginPage } from "./style";
 import "./LoginPage.css";
 import logo from "./images/logo-login.png"
+import cat from "./images/cat.png"
 
 import { useCookies } from "react-cookie";
 
@@ -16,15 +17,44 @@ const LoginPage = props => {
         });
     }
 
+    function setVisible(id) {
+        var el = document.getElementById(id);
+        if (el){
+            console.log("Found cat visible")
+            el.style.visibility="visible";
+        }
+        else {
+            console.log("Not fount cat")
+        }
+    }
+    function setHidden(id) {
+        var el = document.getElementById(id);
+        if (el){
+            console.log("Found cat hidden")
+            el.style.visibility="hidden";
+        }
+        else {
+            console.log("Not fount cat")
+        }
+    }
+
     return (
     <BodyLoginPage>
         <BackgroundLogin>
                 <img id="logo-login" src={logo} alt="logo-login"/>
                 <form>
                     <label>Usuario:</label>
-                    <input type="text" placeholder="username" value={user} onChange={e => setUser(e.target.value)}/>
+                    <div id="loginDiv"
+                    >
+                        <img id="cat-image" src={cat} alt=""/>
+                        <input id="loginInput" type="text" placeholder="username"
+                        value={user} 
+                        onChange={e => {setUser(e.target.value)}}
+                        />
+
+                    </div>
                     <label>Senha:</label>
-                    <input type="password" placeholder="password" onChange={console.log("Atualizando senha")}/>
+                    <input type="password" placeholder="password"/>
                 </form>
                 <br></br>
             <div id="buttons-login-cadastrar">
