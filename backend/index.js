@@ -9,6 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 // app.use(require("./routes/User")); -> exemplo da monitoria
+app.use(require("./routes/CardsList"));
 
 const PORT = 5300;
 
