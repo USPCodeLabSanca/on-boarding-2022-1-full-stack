@@ -11,15 +11,14 @@ function App() {
   const [currentPage, setPage] = useState(login);
   const [currentUser, setUser] = useState('');
 
+  //Essa função será chamada pela loginPage para mudar o login, temporariamente não tem nenhuma verificação ou autenticação
   function loginCallback(user) {
     if (user !== '')
     {
-      setPage(mainPage);
       setUser(user);
+      setPage(mainPage);
     }
   }
-
-  console.log(currentPage);
 
   return (
     <>
