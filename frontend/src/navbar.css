@@ -25,4 +25,6 @@
 .logout {
     margin-left: auto;
     margin-right: 2%;
+
+    border-style: none;
 }

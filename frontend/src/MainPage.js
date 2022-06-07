@@ -30,7 +30,7 @@ const MainPage = props => {
             <div id="mainPageBackground">
                 
                     {listas()}
-                    <button id="newListButton" onClick={addEmptyList}>Nova Lista</button>
+                    <button id="newListButton" onClick={addEmptyList}>Adicionar lista</button>
                 
             </div>
         </>

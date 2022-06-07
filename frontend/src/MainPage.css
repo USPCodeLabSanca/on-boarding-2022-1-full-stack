@@ -11,6 +11,18 @@
 }
 
 #newListButton {
-    height: 50px;
+    min-height: 50px;
+    min-width: 100px;
     margin: 50px;
+    background-color: #0094B5;
+    border-style: none;
+    border-radius: 50px;
+    color: white;
+
+    box-shadow: 1px 1px 1px 1px #003642;
+}
+
+#newListButton:hover {
+    background-color: #004b5c;
+    box-shadow: 1px 1px 1px 1px #0084a1;
 }
