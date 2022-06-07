@@ -22,9 +22,14 @@ const Lista = props => {
         return cardsAtuais.map(card => <Card key={card.id} card={card} />);
     }     
 
+    function saveListName(newListName) {
+        props.lista.nome = newListName;
+    }
+
     return (
         <div className="cardList">
-            <h2 id="listTitle">{props.lista.nome}</h2>
+            <h2 className="listTitle" id={"list"+props.lista.id.toString()} contentEditable="true" 
+                onInput={(e) => saveListName(e.currentTarget.textContent)}>{props.lista.nome}</h2>
             <div className="cardContainer">
                 {cards()}
                 <button id="newCardButton" onClick={addEmptyCard}>+</button>
