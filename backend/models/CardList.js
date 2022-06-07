@@ -5,7 +5,7 @@ const CardListSchema = mongoose.Schema({
     quadro: mongoose.ObjectId
 })
 
-module.exports = mongoose.model('CardList', cardSchema)
+module.exports = mongoose.model('/cardList', CardListSchema)
 
 // Ola
 // Tudo bom com você?

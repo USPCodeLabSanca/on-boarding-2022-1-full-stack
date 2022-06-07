@@ -10,6 +10,7 @@ app.use(express.urlencoded({extended: true}));
 
 // app.use(require("./routes/User")); -> exemplo da monitoria
 app.use(require("./routes/Card"));
+app.use(require("./routes/CardList"));
 const PORT = 5300;
 
 mongoose.connect(process.env.CONN_STR, {useNewUrlParser: true, useUnifiedTopology: true});
