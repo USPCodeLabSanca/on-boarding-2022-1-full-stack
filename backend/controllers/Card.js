@@ -44,3 +44,17 @@ module.exports.moveCard = async (req, res) => {
     )
     return res.status(200).json(movedCard);
 }
+
+module.exports.getAllCards = async (req, res) => {
+    const cardsFound = await CardModel.find();
+    return res.status(200).json(cardsFound);
+
+}
+
+module.exports.getCardsFromList = async (req, res) => {
+    const lista = req.params.lista;
+    const cardsFound = await CardModel.find({lista : lista});
+    return res.status(200).json(cardsFound);
+
+
+}
