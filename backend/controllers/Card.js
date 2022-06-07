@@ -22,3 +22,21 @@ module.exports.deleteCard = async (req, res) => {
     }
 
 }
+
+module.exports.updateCard = async (req, res) => {
+    const id = req.params.id;
+    const updatedCard = await CardModel.findOneAndUpdate(
+        { _id: id }, 
+        { titulo: req.body.titulo, descricao: req.body.descricao }
+    );
+    return res.status(200).json(updatedCard);
+}
+
+module.exports.moveCard = async (req, res) => {
+    const id = req.params.id;
+    const movedCard = await CardModel.findOneAndUpdate(
+        { _id: id },
+        { lista: req.CardList.id }
+    )
+    return res.status(200).json(movedCard);
+}
