@@ -1,10 +1,11 @@
 const CardModel = require('../models/Card')
 
 module.exports.createCard = async (req, res) => {
+    const lista = req.params.lista
     const newCard = new CardModel({
         titulo: req.body.titulo,
         descricao: req.body.descricao,
-
+        lista: lista
     })
     const CardCreated = await newCard.save();
     return res.status(200).json(CardCreated);
@@ -27,16 +28,19 @@ module.exports.updateCard = async (req, res) => {
     const id = req.params.id;
     const updatedCard = await CardModel.findOneAndUpdate(
         { _id: id }, 
-        { titulo: req.body.titulo, descricao: req.body.descricao }
+        { titulo: req.body.titulo, descricao: req.body.descricao },
+        { new: true }
     );
     return res.status(200).json(updatedCard);
 }
 
 module.exports.moveCard = async (req, res) => {
     const id = req.params.id;
+    const lista = req.params.lista;
     const movedCard = await CardModel.findOneAndUpdate(
         { _id: id },
-        { lista: req.CardList.id }
+        { lista },
+        { new: true }
     )
     return res.status(200).json(movedCard);
 }
