@@ -4,7 +4,7 @@ const BoardSchema = mongoose.Schema({
     titulo: String
 })
 
-module.exports = mongoose.model('CardList', cardSchema)
+module.exports = mongoose.model('Board', BoardSchema)
 
 // Ola
 // Tudo bom com você?
