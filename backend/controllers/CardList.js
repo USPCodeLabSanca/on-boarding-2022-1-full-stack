@@ -38,7 +38,7 @@ module.exports.deleteCardList = async (req, res) => {
     if(cardListDeleted)
         return res.status(200).json(cardListDeleted);
 
-    return res.status(404).json("CardList not found");
+    return res.status(404).send("CardList not found");
 }
 
 module.exports.renameCardList = async (req, res) =>{
