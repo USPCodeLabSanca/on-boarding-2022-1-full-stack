@@ -52,3 +52,9 @@ module.exports.updateBoard = async (req, res) => {
 
     return res.status(404).send("Board not found");
 }
+
+module.exports.getAllBoards = async (req, res) => {
+    const boardsFound = await BoardModel.find();
+    
+    return res.status(200).json(boardsFound);
+}

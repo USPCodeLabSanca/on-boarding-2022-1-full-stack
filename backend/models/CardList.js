@@ -6,6 +6,3 @@ const CardListSchema = mongoose.Schema({
 })
 
 module.exports = mongoose.model('/cardList', CardListSchema)
-
-// Ola
-// Tudo bom com você?

@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+var morgan = require('morgan')
 const app = express();
 const cors = require('cors');
 require('dotenv').config();
@@ -7,6 +8,7 @@ require('dotenv').config();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(morgan('dev'));
 
 // app.use(require("./routes/User")); -> exemplo da monitoria
 app.use(require("./routes/Board"));
