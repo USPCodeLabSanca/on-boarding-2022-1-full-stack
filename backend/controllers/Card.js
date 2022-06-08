@@ -1,5 +1,4 @@
 const { isValidObjectId } = require('mongoose');
-const Card = require('../models/Card');
 const CardModel = require('../models/Card')
 const CardListModel = require('../models/CardList')
 
