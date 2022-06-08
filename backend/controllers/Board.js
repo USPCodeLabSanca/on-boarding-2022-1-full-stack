@@ -1,3 +1,4 @@
+const { isValidObjectId } = require('mongoose');
 const BoardModel = require('../models/Board')
 
 module.exports.createBoard = async (req, res) => {
@@ -11,29 +12,43 @@ module.exports.createBoard = async (req, res) => {
 module.exports.getBoard = async (req, res) => {
     const id = req.params.id;
 
+    if(!isValidObjectId(id))
+        return res.status(404).send("Board not found");
+
     const Board = await BoardModel.find({ _id: id }).exec();
-    return res.status(200).json(Board);
+    if(Board)
+        return res.status(200).json(Board);
     
-    /* const Board = await BoardModel.findOne({ _id: id }).exec(function (e, docs) {
-        res.json(docs);
-        res.end();
-    }); */
+    return res.status(404).send("Board not found");
 }
 
 module.exports.deleteBoard = async (req, res) => {
     const id = req.params.id;
-    const Board = await BoardModel.deleteOne({_id: id });
 
-    return res.status(200).json(Board);
-    
+    if(!isValidObjectId(id))
+        return res.status(404).send("Board not found");
+
+    const Board = await BoardModel.deleteOne({_id: id });
+    if(Board)
+        return res.status(200).json(Board);
+
+    return res.status(404).send("Board not found");   
 }
 
 module.exports.updateBoard = async (req, res) => {
     const id = req.params.id;
+    
+    if(!isValidObjectId(id))
+        return res.status(404).send("Board not found");
+
     const updatedBoard = await BoardModel.findOneAndUpdate(
         { _id: id }, 
         { titulo: req.body.titulo },
         { new: true }
     );
-    return res.status(200).json(updatedBoard);
+
+    if(updatedBoard)
+        return res.status(200).json(updatedBoard);
+
+    return res.status(404).send("Board not found");
 }
