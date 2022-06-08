@@ -1,5 +1,7 @@
 const { isValidObjectId } = require('mongoose');
+const Card = require('../models/Card');
 const CardModel = require('../models/Card')
+const CardListModel = require('../models/CardList')
 
 module.exports.createCard = async (req, res) => {
     const lista = req.params.lista;
@@ -19,14 +21,11 @@ module.exports.deleteCard = async (req, res) => {
     if(!isValidObjectId(id))
         return res.status(404).send("Card not found");
 
-    const card = await CardModel.findOne({ _id: id });
-    if(!card) {
-        return res.status(404);
-    }else {
-        await CardModel.deleteOne({_id: id});
+    const card = await CardModel.findOneAndDelete({ _id: id }).exec();
+    if(card)
         return res.status(200).json(card);
-    }
 
+    return res.status(404).send("Card not found");
 }
 
 module.exports.updateCard = async (req, res) => {
@@ -45,22 +44,32 @@ module.exports.updateCard = async (req, res) => {
 module.exports.moveCard = async (req, res) => {
     const id = req.params.id;
     const lista = req.params.lista;
-
-    if(!isValidObjectId(id))
-        return res.status(404).send("Card not found");
-
+    
+    if(!isValidObjectId(id) || !isValidObjectId(lista))
+        return res.status(404).send("Card/CardList not found");
+        
+    const CardListFound = await CardListModel.find({_id : lista}).exec();
+    if(CardListFound.length == 0)
+        return res.status(404).send("CardList not found");
+        
     const movedCard = await CardModel.findOneAndUpdate(
         { _id: id },
         { lista },
         { new: true }
     )
-    return res.status(200).json(movedCard);
+    if(movedCard)
+        return res.status(200).json(movedCard);
+    
+    return res.status(404).send("Card not Found");
 }
 
 module.exports.getAllCards = async (req, res) => {
     const cardsFound = await CardModel.find();
     
-    return res.status(200).json(cardsFound);
+    if(cardsFound.length > 0)
+        return res.status(200).json(cardsFound);
+    
+    return res.status(404).send("Cards not Found");
 }
 
 module.exports.getCardsFromList = async (req, res) => {
@@ -70,8 +79,8 @@ module.exports.getCardsFromList = async (req, res) => {
 
     const cardsFound = await CardModel.find({lista : lista});
     
-    if(cardsFound)
+    if(cardsFound.length > 0)
         return res.status(200).json(cardsFound);
 
-    return res.status(404).json("CardList not found");
+    return res.status(404).send("CardList not found");
 }

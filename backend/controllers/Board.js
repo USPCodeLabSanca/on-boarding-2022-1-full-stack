@@ -9,6 +9,15 @@ module.exports.createBoard = async (req, res) => {
     return res.status(200).json(BoardCreated);
 }
 
+module.exports.getAllBoard = async (req, res) => {
+    const Board = await BoardModel.find().exec();
+    
+    if(Board)
+        return res.status(200).json(Board);
+    
+    return res.status(404).send("Boards not found");
+}
+
 module.exports.getBoard = async (req, res) => {
     const id = req.params.id;
 
@@ -16,7 +25,7 @@ module.exports.getBoard = async (req, res) => {
         return res.status(404).send("Board not found");
 
     const Board = await BoardModel.find({ _id: id }).exec();
-    if(Board)
+    if(Board.length > 0)
         return res.status(200).json(Board);
     
     return res.status(404).send("Board not found");
