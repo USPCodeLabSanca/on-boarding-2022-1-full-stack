@@ -1,5 +1,4 @@
 import { React, useState } from "react";
-import { BackgroundLogin, BodyLoginPage } from "./style";
 import "./LoginPage.css";
 import logo from "./images/logo-login.png"
 import cat from "./images/cat.png"
@@ -39,30 +38,28 @@ const LoginPage = props => {
     }
 
     return (
-    <BodyLoginPage>
-        <BackgroundLogin>
+    <div id="body-login-page">
+        <div id="background-login">
                 <img id="logo-login" src={logo} alt="logo-login"/>
                 <form>
                     <label>Usuario:</label>
-                    <div id="loginDiv"
-                    >
+                    <div id="loginDiv">
                         <img id="cat-image" src={cat} alt=""/>
-                        <input id="loginInput" type="text" placeholder="username"
+                        <input class="user-input" id="loginInput" type="text" placeholder="username"
                         value={user} 
                         onChange={e => {setUser(e.target.value)}}
                         />
-
                     </div>
                     <label>Senha:</label>
-                    <input type="password" placeholder="password"/>
+                    <input class="user-input" type="password" placeholder="password"/>
                 </form>
                 <br></br>
             <div id="buttons-login-cadastrar">
-                <button onClick={() => {handleCookie(user)}}>LOGIN</button>
+                <button onClick={() => {handleCookie(user)}}>Login</button>
                 <button onClick={() => {alert("Quero cadastrar")}}>Cadastrar</button>
             </div>
-        </BackgroundLogin>
-    </BodyLoginPage>)
+        </div>
+    </div>)
 }
 
 export default LoginPage
