@@ -4,7 +4,7 @@ import './Card.css'
 const Card = props => {
     return (
         <div className="card">
-            <h3>{props.card.nome}</h3>
+            <h3>{props.card.titulo}</h3>
             <p className="description">{props.card.descricao}</p>
         </div>
     )
