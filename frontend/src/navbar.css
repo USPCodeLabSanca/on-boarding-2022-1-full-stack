@@ -1,5 +1,4 @@
 .quadro {
-    background-color: #0094B5;
     padding: 1%;
     color: white;
     margin-left: 2%;
@@ -8,18 +7,40 @@
     border-radius: 10px;
     height: 3%;
     text-decoration: none;
+    max-width: 20%;
+    overflow-x: hidden;
+    white-space: nowrap;
 }
 
 .selecionado {
     background: #1F5B69;
+    color: white;
+    padding: 1.2%;
+    min-width: 5%;
 }
 
 .barraNavegacao {
     display: flex;
+    background-color: #004c5e8c;
+    overflow-x: auto;
+}
+
+.botoes-navegacao {
+    background-color: #0094B5;
+    color: white;
+    min-width: 5%;
+}
+.botoes-navegacao:hover {
+    background-color: #00d0ff;
+    color: white;
 }
 
 .criaQuadro {
     border-radius: 50%;
+    border-style: none;
+    min-height: 100%;
+    width: 5%;
+    margin: 0.5% 0.5% 0.5% 2%;
 }
 
 .logout {
@@ -30,6 +51,15 @@
 }
 
 .remove-board {
-    width: 10px;
-    height: 20px;
+    width: 2%;
+    max-width: 20px;
+    height: 10%;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    text-align: center;
+}
+.remove-board:hover {
+    background-color: red;
+    color: white;
 }

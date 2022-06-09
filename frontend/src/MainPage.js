@@ -3,9 +3,10 @@ import Lista from "./Components/Lista"
 import './MainPage.css'
 import BarraNavegacao from './navbar'
 import axios from 'axios'
+import { useCookies } from "react-cookie";
 
 const MainPage = props => {
-
+    const [removeCookie, setCookie] = useCookies(["user"]);
     const [currState, setState] = useState({"listas":[],"quadros":[], 'pulledQuadros':false, 'pulledListas':false});
 
     function addEmptyList() {
@@ -66,15 +67,23 @@ const MainPage = props => {
           setState(stateCopy)})
     }
 
-
     function listas() {
         return currState['listas'].map(lista => <Lista key={lista._id} lista={lista} refresh={changePulleList}/>)
     }
 
+    function handleRemoveCookie() {
+        setCookie("user", '', {path:'/'});
+    }
+
     return (
         <>
+            <div id="body-main">
+            <div id="hi-user">Olá {props.user}, seja bem vindo(a)</div>
+            <button className="quadro logout botoes-navegacao"  key='logout' onClick={() => {handleRemoveCookie()}}> 
+            Logout 
+            </button>
+            </div>
             <BarraNavegacao quadro={quadroSelecionado} quadros={currState['quadros']} refresh={changePulledBoards}/>
-            <p>User = {props.user}</p>
             <div id="mainPageBackground">
                 
                     {listas()}
