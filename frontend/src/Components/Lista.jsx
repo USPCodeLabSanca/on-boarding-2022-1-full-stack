@@ -32,15 +32,30 @@ const Lista = props => {
     }
 
     function cards() {
-        return currState['cards'].map(card => <Card key={card.id} card={card} />);
+        return currState['cards'].map(card => <Card key={card._id} card={card} refresh={changePulledCards}/>);
     }     
 
     function saveListName(newListName) {
         props.lista.titulo = newListName;
     }
 
+    function removeList() {
+        axios.delete("http://localhost:5300/cardList/"+props.lista._id);
+        console.log("Deleting list " + props.lista._id);
+        props.refresh();
+    }
+
+    function changePulledCards() {
+        let stateCopy = JSON.parse(JSON.stringify(currState));
+        stateCopy.pulledCards = false;
+        setState(stateCopy);
+
+        props.refresh();
+    }
+
     return (
         <div className="cardList">
+            <button onClick={() => removeList()}>x</button>
             <h2 className="listTitle" id={"list"+props.lista._id.toString()} contentEditable="true" 
                 onInput={(e) => saveListName(e.currentTarget.textContent)}>{props.lista.titulo}</h2>
             <div className="cardContainer">

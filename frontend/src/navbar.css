@@ -28,3 +28,8 @@
 
     border-style: none;
 }
+
+.remove-board {
+    width: 10px;
+    height: 20px;
+}

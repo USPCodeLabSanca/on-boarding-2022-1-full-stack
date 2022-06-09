@@ -15,3 +15,9 @@
     width: inherit;
     overflow-y: auto;
 }
+
+.remove-card {
+    width: 10%;
+    height: 20px;
+    border-radius: 50px;
+}

@@ -12,6 +12,16 @@ const MainPage = props => {
         axios.post('http://localhost:5300/cardList/' + currState['quadros'][quadroSelecionado]._id, {
             titulo:"New List"
         })
+        changePulleList();
+    }
+
+    function changePulledBoards() {
+        let stateCopy = JSON.parse(JSON.stringify(currState));
+        stateCopy.pulledQuadros = false;
+        setState(stateCopy);
+    }
+    
+    function changePulleList() {
         let stateCopy = JSON.parse(JSON.stringify(currState));
         stateCopy.pulledListas = false;
         setState(stateCopy);
@@ -58,12 +68,12 @@ const MainPage = props => {
 
 
     function listas() {
-        return currState['listas'].map(lista => <Lista key={lista._id} lista={lista}/>)
+        return currState['listas'].map(lista => <Lista key={lista._id} lista={lista} refresh={changePulleList}/>)
     }
 
     return (
         <>
-            <BarraNavegacao quadro={quadroSelecionado} quadros={currState['quadros']}/>
+            <BarraNavegacao quadro={quadroSelecionado} quadros={currState['quadros']} refresh={changePulledBoards}/>
             <p>User = {props.user}</p>
             <div id="mainPageBackground">
                 
