@@ -27,8 +27,39 @@
     
 }
 
-.listTitle {
-    text-align: center;
+
+.holder {
+    height: 10%;
+}
+
+.holder:hover > .titleSubmit {
+    opacity: 100%;
+}
+
+.holder:hover > .removeButton {
+    opacity: 100%;
+}
+
+.titleText {
+    background-color: transparent;
+    border: 0;
+    font-weight: 700;
+    width:70%;
+    margin-left: 4%;
+    height:100%;
+    font-size: 25px;
+}
+
+.titleSubmit {
+    background-color: #0093b4;
+    opacity: 0%;
+    border-radius: 30%;
+}
+
+.removeButton {
+    border-radius: 40%;
+    opacity: 0%;
+    background-color: #0093b4;
 }
 
 #newCardButton {

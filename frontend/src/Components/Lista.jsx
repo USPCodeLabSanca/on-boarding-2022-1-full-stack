@@ -36,7 +36,15 @@ const Lista = props => {
     }     
 
     function saveListName(newListName) {
-        props.lista.titulo = newListName;
+        let el = document.getElementById("text:"+props.lista._id);
+        let content = el.value;
+        console.log(content);
+        axios.put('http://localhost:5300/cardList/'+props.lista._id, {
+            'titulo':content
+        })
+        .then(function () {
+            props.refresh();
+        })
     }
 
     function removeList() {
@@ -55,9 +63,12 @@ const Lista = props => {
 
     return (
         <div className="cardList">
-            <button onClick={() => removeList()}>x</button>
-            <h2 className="listTitle" id={"list"+props.lista._id.toString()} contentEditable="true" 
-                onInput={(e) => saveListName(e.currentTarget.textContent)}>{props.lista.titulo}</h2>
+            <div className="holder">
+            <button className="removeButton" onClick={() => removeList()}>x</button>
+            <input id={"text:"+props.lista._id} type="text" className="titleText" defaultValue={props.lista.titulo}/>
+            <input type="submit" className="titleSubmit" defaultValue="Submit" onClick={() => saveListName()}
+                    value="save"/>
+            </div>
             <div className="cardContainer">
                 {cards()}
                 <button id="newCardButton" onClick={addEmptyCard}>+</button>

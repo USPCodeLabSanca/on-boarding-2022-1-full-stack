@@ -45,7 +45,6 @@ const MainPage = props => {
         axios.get('http://localhost:5300/cardList/'+currState['quadros'][quadroSelecionado]._id)
             .then(function (response) {
                 let listas = response['data'];
-                console.log(listas);
 
                 let stateCopy = JSON.parse(JSON.stringify(currState));
                 stateCopy.listas = listas;
