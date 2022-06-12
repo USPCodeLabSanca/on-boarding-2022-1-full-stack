@@ -17,12 +17,14 @@ const BarraNavegacao = props => {
 
   function mapQuadros() {
     return props.quadros.map((quadro, indice) => 
-        <><a className={indice===props.quadro ? "quadro selecionado" : "quadro botoes-navegacao" }
-        key={indice} href={'/?quadro='+indice.toString()}>
-            {quadro.titulo}
-        </a>
-        <button className="remove-board" onClick={() => removeBoard(indice)}>x</button>
-        </>)
+      <div key={indice}>
+          <a className={indice === props.quadro ? "quadro selecionado" : "quadro botoes-navegacao"}
+           href={'/?quadro='+indice.toString()}>
+              {quadro.titulo}
+          </a>
+          <button className="remove-board" onClick={() => removeBoard(indice)}>x</button>
+      </div>
+    )
   }
 
   return (

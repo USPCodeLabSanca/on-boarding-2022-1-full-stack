@@ -45,13 +45,13 @@ const LoginPage = props => {
                     <label>Usuario:</label>
                     <div id="loginDiv">
                         <img id="cat-image" src={cat} alt=""/>
-                        <input class="user-input" id="loginInput" type="text" placeholder="username"
+                        <input className="user-input" id="loginInput" type="text" placeholder="username"
                         value={user} 
                         onChange={e => {setUser(e.target.value)}}
                         />
                     </div>
                     <label>Senha:</label>
-                    <input class="user-input" type="password" placeholder="password"/>
+                    <input className="user-input" type="password" placeholder="password"/>
                 </form>
                 <br></br>
             <div id="buttons-login-cadastrar">

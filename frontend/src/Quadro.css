@@ -1,9 +1,5 @@
-body{
-    background-image: linear-gradient(360deg, rgb(0, 69, 90), rgb(0, 173, 226));
-}
-
-#mainPageBackground {
-    height: 89vh;
+#quadro {
+    height: 100%;
     overflow-x: auto;
     overflow-y: hidden;
 
@@ -12,7 +8,7 @@ body{
     align-items: flex-start;
 }
 
-#newListButton {
+.newListButton {
     min-height: 50px;
     min-width: 100px;
     margin: 50px;
@@ -27,19 +23,4 @@ body{
 #newListButton:hover {
     background-color: #004b5c;
     box-shadow: 1px 1px 1px 1px #0084a1;
-}
-
-#body-main {
-    display: flex;
-    background-color: #004c5e8c;
-}
-
-#hi-user {
-    background-color: #0094B5;
-    color: white;
-    margin: 1%;
-    min-width: 10%;
-    max-width: 80%;
-    padding: 0.5% 1%;
-    border-radius: 50px;
 }

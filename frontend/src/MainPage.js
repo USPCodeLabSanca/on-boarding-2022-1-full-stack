@@ -1,31 +1,18 @@
 import React, { useState } from "react"
-import Lista from "./Components/Lista"
-import './MainPage.css'
-import BarraNavegacao from './navbar'
-import axios from 'axios'
 import { useCookies } from "react-cookie";
+import axios from 'axios'
+import Condicional from './Components/Condicional'
+import BarraNavegacao from './navbar'
+import Quadro from "./Quadro";
+import './MainPage.css'
 
 const MainPage = props => {
     const [removeCookie, setCookie] = useCookies(["user"]);
-    const [currState, setState] = useState({"listas":[],"quadros":[], 'pulledQuadros':false, 'pulledListas':false});
-
-    async function addEmptyList() {
-        await axios.post('http://localhost:5300/cardList/' + currState['quadros'][quadroSelecionado]._id, {
-            titulo:"New List"
-        })
-        changePulleList();
-    }
+    const [currState, setState] = useState({"quadros":[], 'pulledQuadros':false, 'pulledListas':false});
 
     function changePulledBoards() {
         let stateCopy = JSON.parse(JSON.stringify(currState));
         stateCopy.pulledQuadros = false;
-        stateCopy.pulledListas = false;
-        setState(stateCopy);
-    }
-    
-    function changePulleList() {
-        let stateCopy = JSON.parse(JSON.stringify(currState));
-        stateCopy.pulledListas = false;
         setState(stateCopy);
     }
 
@@ -38,21 +25,8 @@ const MainPage = props => {
         quadroSelecionado = 0;
     }
     else {
-        quadroSelecionado = parseInt(params.get("quadro"), 10);
-    }
-
-    if(currState['pulledQuadros'] & !currState['pulledListas']) {
-        console.log("pulling listas")
-        axios.get('http://localhost:5300/cardList/'+currState['quadros'][quadroSelecionado]._id)
-            .then(function (response) {
-                let listas = response['data'];
-
-                let stateCopy = JSON.parse(JSON.stringify(currState));
-                stateCopy.listas = listas;
-                stateCopy.pulledListas = true;
-
-                setState(stateCopy)
-            })
+        const parsed = parseInt(params.get("quadro"), 10);
+        quadroSelecionado = (parsed > 0 && parsed < currState.quadros.length) ? parsed : 0;
     }
 
     if (!currState['pulledQuadros']){
@@ -63,12 +37,7 @@ const MainPage = props => {
           let stateCopy = JSON.parse(JSON.stringify(currState));
           stateCopy.quadros = quadros;
           stateCopy.pulledQuadros = true;
-
           setState(stateCopy)})
-    }
-
-    function listas() {
-        return currState['listas'].map(lista => <Lista key={lista._id} lista={lista} refresh={changePulleList}/>)
     }
 
     function handleRemoveCookie() {
@@ -83,11 +52,11 @@ const MainPage = props => {
                 Logout 
                 </button>
             </div>
-            <BarraNavegacao quadro={quadroSelecionado} quadros={currState['quadros']} refresh={changePulledBoards}/>
+            <BarraNavegacao quadro={quadroSelecionado} quadros={currState['quadros']} refresh={changePulledBoards} />
             <div id="mainPageBackground">
-                    {listas()}
-                    <button id="newListButton" onClick={addEmptyList}>Adicionar lista</button>
-                
+                <Condicional if={currState.quadros.length > 0 && quadroSelecionado < currState.quadros.length}>
+                    {<Quadro quadro={currState.quadros[quadroSelecionado]} />}
+                </Condicional>
             </div>
         </>
     )
