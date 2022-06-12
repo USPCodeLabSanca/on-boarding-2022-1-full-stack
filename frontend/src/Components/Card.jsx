@@ -3,9 +3,9 @@ import './Card.css'
 import axios from 'axios'
 
 const Card = props => {
-    function removeCard() {
-        axios.delete("http://localhost:5300/card/"+props.card._id);
+    async function removeCard() {
         console.log("Deleting card " + props.card._id);
+        await axios.delete("http://localhost:5300/card/"+props.card._id);
         props.refresh();
     }
 

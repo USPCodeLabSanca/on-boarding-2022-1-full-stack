@@ -3,13 +3,13 @@ import './navbar.css'
 import axios from 'axios';
 
 const BarraNavegacao = props => {
-  function removeBoard(indice) {
-    axios.delete("http://localhost:5300/board/"+props.quadros[indice]._id);
+  async function removeBoard(indice) {
+    await axios.delete("http://localhost:5300/board/"+props.quadros[indice]._id);
     props.refresh();
   }
 
-  function addEmptyBoard() {
-    axios.post("http://localhost:5300/board", {
+  async function addEmptyBoard() {
+    await axios.post("http://localhost:5300/board", {
       titulo:"New Board"
     });
     props.refresh();

@@ -9,8 +9,8 @@ const MainPage = props => {
     const [removeCookie, setCookie] = useCookies(["user"]);
     const [currState, setState] = useState({"listas":[],"quadros":[], 'pulledQuadros':false, 'pulledListas':false});
 
-    function addEmptyList() {
-        axios.post('http://localhost:5300/cardList/' + currState['quadros'][quadroSelecionado]._id, {
+    async function addEmptyList() {
+        await axios.post('http://localhost:5300/cardList/' + currState['quadros'][quadroSelecionado]._id, {
             titulo:"New List"
         })
         changePulleList();
@@ -19,6 +19,7 @@ const MainPage = props => {
     function changePulledBoards() {
         let stateCopy = JSON.parse(JSON.stringify(currState));
         stateCopy.pulledQuadros = false;
+        stateCopy.pulledListas = false;
         setState(stateCopy);
     }
     
@@ -77,14 +78,13 @@ const MainPage = props => {
     return (
         <>
             <div id="body-main">
-            <div id="hi-user">Olá {props.user}, seja bem vindo(a)</div>
-            <button className="quadro logout botoes-navegacao"  key='logout' onClick={() => {handleRemoveCookie()}}> 
-            Logout 
-            </button>
+                <div id="hi-user">Olá {props.user}, seja bem vindo(a)</div>
+                <button className="quadro logout botoes-navegacao"  key='logout' onClick={() => {handleRemoveCookie()}}> 
+                Logout 
+                </button>
             </div>
             <BarraNavegacao quadro={quadroSelecionado} quadros={currState['quadros']} refresh={changePulledBoards}/>
             <div id="mainPageBackground">
-                
                     {listas()}
                     <button id="newListButton" onClick={addEmptyList}>Adicionar lista</button>
                 

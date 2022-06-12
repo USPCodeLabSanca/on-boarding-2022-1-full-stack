@@ -21,8 +21,8 @@ const Lista = props => {
             })
     }
 
-    function addEmptyCard() {
-        axios.post('http://localhost:5300/card/' + props.lista._id, {
+    async function addEmptyCard() {
+        await axios.post('http://localhost:5300/card/' + props.lista._id, {
             titulo:"Novo Cartao",
             descricao:"Description"
         })
@@ -47,9 +47,9 @@ const Lista = props => {
         })
     }
 
-    function removeList() {
-        axios.delete("http://localhost:5300/cardList/"+props.lista._id);
+    async function removeList() {
         console.log("Deleting list " + props.lista._id);
+        await axios.delete("http://localhost:5300/cardList/"+props.lista._id);
         props.refresh();
     }
 
