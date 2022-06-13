@@ -8,7 +8,7 @@ import './MainPage.css'
 
 const MainPage = props => {
     const [removeCookie, setCookie] = useCookies(["user"]);
-    const [currState, setState] = useState({ "quadros": [], 'pulledQuadros': false, 'pulledListas': false });
+    const [currState, setState] = useState({ "quadros": [], 'pulledQuadros': false, 'quadroSelecionado': 0 });
 
     function changePulledBoards() {
         let stateCopy = JSON.parse(JSON.stringify(currState));
@@ -16,42 +16,37 @@ const MainPage = props => {
         setState(stateCopy);
     }
 
+    function setQuadro(index) {
+        if (index < 0 || currState.quadros.length === 0) {
+            index = 0;
+        }
+        else if (index >= currState.quadros.length) {
+            index = currState.quadros.length - 1;
+        }
+        setState({
+            ...currState,
+            quadroSelecionado: index
+        })
+    }
+
     if (!currState['pulledQuadros']){
         console.log("pulling quadros")
         axios.get('http://localhost:5300/board')
+        .catch(e => console.log("No boards to pull"))
         .then(function (response) {
             let quadros = response['data'];
             let stateCopy = JSON.parse(JSON.stringify(currState));
             stateCopy.quadros = quadros;
             stateCopy.pulledQuadros = true;
+
+            let novoQuadro = currState.quadroSelecionado;
+            if (novoQuadro < 0) novoQuadro = 0;
+            else if (quadros.length > 0 && novoQuadro >= quadros.length) novoQuadro = quadros.length - 1;
+            stateCopy.quadroSelecionado = novoQuadro
+
             setState(stateCopy)
         })
     }
-
-    // Olha a variavel quadro no parametro get
-    // Se nenhum quadro ta setado, usa o valor padrao de 0
-    let search = window.location.search;
-    let params = new URLSearchParams(search);
-    let paramQuadro = params.get("quadro");
-    let quadroSelecionado;
-    if (!paramQuadro || isNaN(paramQuadro)) {
-        quadroSelecionado = 0;
-    }
-    else {
-        let parsed = parseInt(paramQuadro, 10);
-        if (parsed < 0 || parsed >= currState.quadros.length) {
-            parsed = (parsed < 0) ? 0 : currState.quadros.length - 1;
-            if (currState.quadros.length > 0) {
-                params.set("quadro", parsed);
-                window.location.search = params;    
-            }
-        }
-        quadroSelecionado = parsed;
-    }
-    
-    
-
-    
 
     function handleRemoveCookie() {
         setCookie("user", '', {path:'/'});
@@ -66,12 +61,12 @@ const MainPage = props => {
                     Logout 
                     </button>
                 </div>
-                <BarraNavegacao quadro={quadroSelecionado} quadros={currState['quadros']} refresh={changePulledBoards} />
+                <BarraNavegacao quadro={currState.quadroSelecionado} quadros={currState['quadros']} refresh={changePulledBoards} setQuadro={setQuadro}/>
             </div>
             
             <div id="mainPageBackground">
-                <Condicional if={currState.quadros.length > 0 && quadroSelecionado < currState.quadros.length}>
-                    {<Quadro quadro={currState.quadros[quadroSelecionado]} />}
+                <Condicional if={currState.quadros.length > 0 && currState.quadroSelecionado < currState.quadros.length}>
+                    {<Quadro quadro={currState.quadros[currState.quadroSelecionado]} />}
                 </Condicional>
             </div>
         </>

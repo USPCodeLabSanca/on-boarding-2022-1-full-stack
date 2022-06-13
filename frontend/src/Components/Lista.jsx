@@ -10,7 +10,7 @@ const Lista = props => {
     if (!currState["pulledCards"]) {
         console.log("pulling cards");
         axios.get('http://localhost:5300/card/' + props.lista._id)
-            .catch(e => { console.log("error!"); console.log(e)} )
+            .catch(e => console.log("No cards to pull"))
             .then(function (response) {
                 setState({
                     ...currState,
@@ -63,14 +63,13 @@ const Lista = props => {
             <div className="holder">
             <button className="removeButton" onClick={() => removeList()}>x</button>
             <input id={"text:"+props.lista._id} type="text" className="titleText" defaultValue={props.lista.titulo}/>
-            <input type="submit" className="titleSubmit" defaultValue="Submit" onClick={() => saveListName()}
+            <input type="submit" className="titleSubmit" onClick={() => saveListName()}
                     value="save"/>
             </div>
             <div className="cardContainer">
                 {cards()}
                 <button id="newCardButton" onClick={addEmptyCard}>+</button>
             </div>
-            
         </div>
     )
 }

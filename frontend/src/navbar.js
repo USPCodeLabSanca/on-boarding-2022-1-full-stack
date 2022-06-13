@@ -19,8 +19,8 @@ const BarraNavegacao = props => {
   function mapQuadros() {
     return props.quadros.map((quadro, indice) => 
       <>
-          <a key={indice} className={indice === props.quadro ? "quadro selecionado" : "quadro botoes-navegacao"}
-           href={'/?quadro='+indice.toString()}>
+        <a key={indice} className={indice === props.quadro ? "quadro selecionado" : "quadro botoes-navegacao"}
+          onClick={() => props.setQuadro(indice)}>
               {quadro.titulo}
           </a>
           <button className="remove-board" onClick={() => removeBoard(indice)}>x</button>
