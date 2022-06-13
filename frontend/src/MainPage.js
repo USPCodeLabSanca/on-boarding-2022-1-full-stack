@@ -3,7 +3,7 @@ import { useCookies } from "react-cookie";
 import axios from 'axios'
 import Condicional from './Components/Condicional'
 import BarraNavegacao from './navbar'
-import Quadro from "./Quadro";
+import Quadro from "./Components/Quadro";
 import './MainPage.css'
 
 const MainPage = props => {

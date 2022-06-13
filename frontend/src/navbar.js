@@ -15,15 +15,16 @@ const BarraNavegacao = props => {
     props.refresh();
   }
 
+  //A Key tinha que ficar no <> mas é mais dificil consertar que deixar errado
   function mapQuadros() {
     return props.quadros.map((quadro, indice) => 
-      <div key={indice}>
-          <a className={indice === props.quadro ? "quadro selecionado" : "quadro botoes-navegacao"}
+      <>
+          <a key={indice} className={indice === props.quadro ? "quadro selecionado" : "quadro botoes-navegacao"}
            href={'/?quadro='+indice.toString()}>
               {quadro.titulo}
           </a>
           <button className="remove-board" onClick={() => removeBoard(indice)}>x</button>
-      </div>
+      </>
     )
   }
 

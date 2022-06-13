@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Lista from "./Components/Lista"
+import Lista from "./Lista"
 import axios from "axios";
 import './Quadro.css'
 
