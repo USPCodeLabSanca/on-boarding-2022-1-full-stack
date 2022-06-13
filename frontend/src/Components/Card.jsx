@@ -1,6 +1,7 @@
 import React from "react"
 import './Card.css'
 import axios from 'axios'
+import strip from './../strip.jsx'
 
 const Card = props => {
     async function removeCard() {
@@ -13,6 +14,9 @@ const Card = props => {
         console.log("Saving")
         let tituloVal = document.getElementById("titulo:"+props.card._id).innerHTML;
         let bodyVal = document.getElementById("text:"+props.card._id).innerHTML;
+
+        tituloVal = strip(tituloVal)
+        bodyVal = strip(bodyVal)
         console.log("Updating card " + props.card._id);
         await axios.put("http://localhost:5300/card/"+props.card._id, {
             "titulo":tituloVal,

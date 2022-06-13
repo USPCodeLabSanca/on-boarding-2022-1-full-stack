@@ -35,7 +35,8 @@
 
 .description {
     width: inherit;
-    overflow-y: auto;
+    max-width: 100%;
+    background-color: transparent;
 }
 
 .card-button {
