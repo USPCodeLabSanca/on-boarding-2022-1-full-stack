@@ -14,9 +14,6 @@ const MainPage = props => {
         changePulledBoards();
     }
     function changePulledBoards(newSelected) {
-        /*let stateCopy = JSON.parse(JSON.stringify(currState));
-        stateCopy.pulledQuadros = false;
-        setState(stateCopy);*/
         console.log("pulling quadros")
         axios.get('http://localhost:5300/board')
         .catch(e => console.log("No boards to pull"))
@@ -36,34 +33,16 @@ const MainPage = props => {
         })
     }
 
-    /*if (!currState['pulledQuadros']){
-        console.log("pulling quadros")
-        axios.get('http://localhost:5300/board')
-        .catch(e => console.log("No boards to pull"))
-        .then(function (response) {
-            let quadros = response['data'];
-            let stateCopy = JSON.parse(JSON.stringify(currState));
-            stateCopy.quadros = quadros;
-            stateCopy.pulledQuadros = true;
-
-            let novoQuadro = currState.quadroSelecionado;
-            if (novoQuadro < 0) novoQuadro = 0;
-            else if (quadros.length > 0 && novoQuadro >= quadros.length) novoQuadro = quadros.length - 1;
-            stateCopy.quadroSelecionado = novoQuadro
-
-            setState(stateCopy)
-        })
-    }*/
-
     function handleRemoveCookie() {
         setCookie("user", '', {path:'/'});
     }
 
     return (
         <>
+        <div id="mainPage">
             <div id="header">
-            <div id="body-main">
-                <div id="hi-user">Olá {props.user}, seja bem vindo(a)</div>
+                <div id="body-main">
+                    <div id="hi-user">Olá {props.user}, seja bem vindo(a)</div>
                     <button className="quadro logout botoes-navegacao"  key='logout' onClick={() => {handleRemoveCookie()}}> 
                     Logout 
                     </button>
@@ -76,6 +55,8 @@ const MainPage = props => {
                     {<Quadro quadro={currState.quadros[currState.quadroSelecionado]} />}
                 </Condicional>
             </div>
+        </div>
+            
         </>
     )
 }

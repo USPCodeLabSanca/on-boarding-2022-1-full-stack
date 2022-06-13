@@ -1,7 +1,7 @@
 .quadro {
     padding: 1%;
     color: white;
-    margin-left: 2%;
+    margin-left: 1%;
     margin-top: 0.5%;
     margin-bottom: 0.5%;
     border-radius: 10px;
@@ -10,6 +10,7 @@
     max-width: 20%;
     overflow-x: hidden;
     white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .selecionado {
@@ -51,8 +52,8 @@
 }
 
 .remove-board {
-    width: 2%;
     max-width: 20px;
+    min-width: 20px;
     height: 10%;
     background-color: transparent;
     border: none;

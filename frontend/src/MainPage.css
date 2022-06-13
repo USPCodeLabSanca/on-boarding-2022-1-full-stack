@@ -1,9 +1,16 @@
-body{
+#mainPage{
     background-image: linear-gradient(360deg, rgb(0, 69, 90), rgb(0, 173, 226));
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 1;
+    height: 100vh;
+    width:100vw;
 }
 
 #header {
-    height: 160px
+    height: 160p;
+    width: 100vw;
 }
 
 #mainPageBackground {
