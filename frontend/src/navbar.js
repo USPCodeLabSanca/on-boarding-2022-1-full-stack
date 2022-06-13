@@ -4,8 +4,14 @@ import axios from 'axios';
 
 const BarraNavegacao = props => {
   async function removeBoard(indice) {
-    await axios.delete("http://localhost:5300/board/"+props.quadros[indice]._id);
-    props.refresh();
+    await axios.delete("http://localhost:5300/board/" + props.quadros[indice]._id);
+
+    if (indice < props.quadro) {
+      props.refresh(props.quadro - 1);
+    }
+    else {
+      props.refresh();
+    }
   }
 
   async function addEmptyBoard() {
@@ -20,7 +26,7 @@ const BarraNavegacao = props => {
     return props.quadros.map((quadro, indice) => 
       <>
         <a key={indice} className={indice === props.quadro ? "quadro selecionado" : "quadro botoes-navegacao"}
-          onClick={() => props.setQuadro(indice)}>
+          onClick={() => props.refresh(indice)}>
               {quadro.titulo}
           </a>
           <button className="remove-board" onClick={() => removeBoard(indice)}>x</button>
