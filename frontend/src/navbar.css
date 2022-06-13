@@ -1,4 +1,5 @@
 .quadro {
+    width:80px;
     padding: 1%;
     color: white;
     margin-left: 1%;
@@ -12,6 +13,8 @@
     white-space: nowrap;
     flex-shrink: 0;
 }
+
+
 
 .selecionado {
     background: #1F5B69;
@@ -51,11 +54,28 @@
     border-style: none;
 }
 
+
+
+.boardEditor:hover > .remove-board {
+    opacity: 100%;
+}
+
+.boardEditor:hover > .save-board {
+    opacity: 100%;
+}
+
+.boardEditor {
+    display: flex;
+    flex-direction: column;
+}
+
 .remove-board {
-    max-width: 20px;
-    min-width: 20px;
+    opacity: 0;
+    margin-top: 10%;
+    margin-left: 5%;
+    height: 20%;
     height: 10%;
-    background-color: transparent;
+    background-color: #0093b4;
     border: none;
     border-radius: 50%;
     text-align: center;
@@ -63,4 +83,12 @@
 .remove-board:hover {
     background-color: red;
     color: white;
+}
+
+.save-board {
+    background-color: #0093b4;
+    border: none;
+    margin-top: 30%;
+    margin-left: 5%;
+    opacity: 0;
 }
