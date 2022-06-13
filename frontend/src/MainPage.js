@@ -46,13 +46,16 @@ const MainPage = props => {
 
     return (
         <>
+            <div id="header">
             <div id="body-main">
                 <div id="hi-user">Olá {props.user}, seja bem vindo(a)</div>
-                <button className="quadro logout botoes-navegacao"  key='logout' onClick={() => {handleRemoveCookie()}}> 
-                Logout 
-                </button>
+                    <button className="quadro logout botoes-navegacao"  key='logout' onClick={() => {handleRemoveCookie()}}> 
+                    Logout 
+                    </button>
+                </div>
+                <BarraNavegacao quadro={quadroSelecionado} quadros={currState['quadros']} refresh={changePulledBoards} />
             </div>
-            <BarraNavegacao quadro={quadroSelecionado} quadros={currState['quadros']} refresh={changePulledBoards} />
+            
             <div id="mainPageBackground">
                 <Condicional if={currState.quadros.length > 0 && quadroSelecionado < currState.quadros.length}>
                     {<Quadro quadro={currState.quadros[quadroSelecionado]} />}
