@@ -8,16 +8,15 @@ const Lista = props => {
     const [currState, setState] = useState({"cards":[], "pulledCards":false});
 
     if (!currState["pulledCards"]) {
-        axios.get('http://localhost:5300/card/'+props.lista._id)
+        console.log("pulling cards");
+        axios.get('http://localhost:5300/card/' + props.lista._id)
+            .catch(e => { console.log("error!"); console.log(e)} )
             .then(function (response) {
-                let cards = response['data'];
-                console.log(cards);
-
-                let stateCopy = JSON.parse(JSON.stringify(currState));
-                stateCopy.cards = cards;
-                stateCopy.pulledCards = true;
-
-                setState(stateCopy)
+                setState({
+                    ...currState,
+                    cards: response ? response.data : [],
+                    pulledCards: true
+                })
             })
     }
 
@@ -57,8 +56,6 @@ const Lista = props => {
         let stateCopy = JSON.parse(JSON.stringify(currState));
         stateCopy.pulledCards = false;
         setState(stateCopy);
-
-        props.refresh();
     }
 
     return (
