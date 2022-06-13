@@ -53,6 +53,15 @@
     height: 65%;
     margin-right: 2%;
     border-radius: 30%;
+    border-color: #00BCE6;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: auto;
+}
+.listButton:hover {
+    background-color: #00BCE6;
+    border-color: #0093b4;
 }
 
 

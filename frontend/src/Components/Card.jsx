@@ -23,8 +23,10 @@ const Card = props => {
 
     return (
         <div className="card">
-            <button className="card-button" onClick={() => removeCard()}>x</button>
-            <button className="card-button" onClick={() => saveCard()}>save</button>
+            <div className="header-card">
+                <button className="card-button" onClick={() => saveCard()}>save</button>
+                <button className="card-button" onClick={() => removeCard()}>x</button>
+            </div>
             <h3 id={"titulo:"+props.card._id} contentEditable="true" >{props.card.titulo}</h3>
             <p contentEditable="true" className="description" id={"text:"+props.card._id}>{props.card.descricao}</p>
         </div>
