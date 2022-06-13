@@ -61,10 +61,10 @@ const Lista = props => {
     return (
         <div className="cardList">
             <div className="holder">
-            <button className="removeButton" onClick={() => removeList()}>x</button>
             <input id={"text:"+props.lista._id} type="text" className="titleText" defaultValue={props.lista.titulo}/>
-            <input type="submit" className="titleSubmit" defaultValue="Submit" onClick={() => saveListName()}
+            <input type="submit" className="listButton" defaultValue="Submit" onClick={() => saveListName()}
                     value="save"/>
+            <button className="listButton" onClick={() => removeList()}>X</button>
             </div>
             <div className="cardContainer">
                 {cards()}

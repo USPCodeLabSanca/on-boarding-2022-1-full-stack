@@ -11,13 +11,20 @@
     padding: 5px;
 }
 
+.card:hover > .card-button {
+    opacity: 100%;
+}
+
 .description {
     width: inherit;
     overflow-y: auto;
 }
 
-.remove-card {
-    width: 10%;
+.card-button {
+    background-color: #0093b4;
+    text-align: center;
+    opacity: 0%;
+    padding: 5px;
     height: 20px;
     border-radius: 50px;
 }

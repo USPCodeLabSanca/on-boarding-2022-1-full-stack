@@ -32,11 +32,7 @@
     height: 10%;
 }
 
-.holder:hover > .titleSubmit {
-    opacity: 100%;
-}
-
-.holder:hover > .removeButton {
+.holder:hover > .listButton {
     opacity: 100%;
 }
 
@@ -50,17 +46,15 @@
     font-size: 25px;
 }
 
-.titleSubmit {
+.listButton {
+    padding: 5px;
     background-color: #0093b4;
     opacity: 0%;
+    height: 65%;
+    margin-right: 2%;
     border-radius: 30%;
 }
 
-.removeButton {
-    border-radius: 40%;
-    opacity: 0%;
-    background-color: #0093b4;
-}
 
 #newCardButton {
     min-height: 25px;
