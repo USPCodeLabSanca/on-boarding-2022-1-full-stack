@@ -40,8 +40,8 @@ const BarraNavegacao = props => {
               {quadro.titulo}
           </a>
           <div className="boardEditor">
-          <button className="remove-board" onClick={() => removeBoard(indice)}>x</button>
-          <button className="save-board" onClick={() => saveBoard(indice)}>save</button>
+          <button className="remove-board button-board" onClick={() => removeBoard(indice)}>x</button>
+          <button className="save-board button-board" onClick={() => saveBoard(indice)}>save</button>
           </div>
       </>
     )

@@ -59,8 +59,14 @@
     justify-content: center;
     padding: auto;
 }
-.listButton:hover {
-    background-color: #00BCE6;
+
+.remove-listButton:hover {
+    background-color: red;
+    color: white;
+}
+.save-listButton:hover {
+    background-color: green;
+    color: white;
 }
 
 
