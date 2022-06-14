@@ -5,7 +5,14 @@ import axios from 'axios'
 
 const Lista = props => {
 
-    const [currState, setState] = useState({"cards":[], "pulledCards":false});
+    const [currState, setState] = useState({ "cards": [], "pulledCards": false });
+    
+    console.log(props.lista);
+
+    if (props.lista.dirty) {
+        changePulledCards();
+        props.lista.dirty = false;
+    }
 
     if (!currState["pulledCards"]) {
         console.log("pulling cards");
@@ -31,7 +38,7 @@ const Lista = props => {
     }
 
     function cards() {
-        return currState['cards'].map(card => <Card key={card._id} card={card} refresh={changePulledCards}/>);
+        return currState['cards'].map(card => <Card key={card._id} card={card} refresh={changePulledCards} allLists={props.allLists} moveCard={props.moveCard}/>);
     }     
 
     function saveListName(newListName) {

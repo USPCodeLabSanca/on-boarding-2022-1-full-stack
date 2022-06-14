@@ -25,9 +25,16 @@ const Card = props => {
         props.refresh();
     }
 
+    function selectLists() {
+        return props.allLists.map(l => <option key={l._id} value={l._id}>{l.titulo}</option>)
+    }
+
     return (
         <div className="card">
             <div className="header-card">
+                <select className="card-button" value={props.card.lista} onChange={e => props.moveCard(props.card, e.target.value)}>
+                    {selectLists()}
+                </select>
                 <button className="card-button save-card-button" onClick={() => saveCard()}>save</button>
                 <button className="card-button remove-card-button" onClick={() => removeCard()}>x</button>
             </div>

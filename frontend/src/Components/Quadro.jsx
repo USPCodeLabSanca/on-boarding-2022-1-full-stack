@@ -4,9 +4,9 @@ import axios from "axios";
 import './Quadro.css'
 
 const Quadro = props => {
-    const [currState, setState] = useState({ "listas": [], 'pulledListas': false, 'quadroID': -1 });
+    const [currState, setState] = useState({ "listas": [], 'quadroID': -1 });
     
-    if (currState.pulledListas && currState.quadroID !== props.quadro._id) {
+    if (currState.quadroID !== props.quadro._id) {
         changePulledList();
     }
 
@@ -17,33 +17,34 @@ const Quadro = props => {
         changePulledList();
     }
     
-    function changePulledList() {
+    async function changePulledList() {
+        console.log("pulling listas")
+        
+        const response = await axios.get('http://localhost:5300/cardList/' + props.quadro._id)
         setState({
             ...currState,
-            pulledListas: false
+            quadroID: props.quadro._id,
+            listas: response['data'],
+            pulledListas: true
+        })    
+    }
+
+    async function moveCard(card, finalList) {
+        await axios.put("http://localhost:5300/card/" + card._id + "/" + finalList);
+        changePulledList();
+        
+        //Setta as listas mudadas pra dirty pra poder atualizar elas
+        const newArr = currState.listas;
+        newArr.find(l => l._id == card.lista).dirty = true;
+        newArr.find(l => l._id == finalList).dirty = true;
+        setState({
+            ...currState,
+            newArr
         })
     }
 
-    if(!currState.pulledListas) {
-        console.log("pulling listas")
-        
-        axios.get('http://localhost:5300/cardList/' + props.quadro._id)
-        .catch(e => console.log("No lists to pull"))
-        .then(response =>
-        {
-                setState({
-                    ...currState,
-                    quadroID: props.quadro._id,
-                    listas: response['data'],
-                    pulledListas: true
-                })    
-            }
-            
-        )
-    }
-
     function listas() {
-        return currState['listas'].map(lista => <Lista key={lista._id} lista={lista} refresh={changePulledList}/>)
+        return currState['listas'].map(lista => <Lista key={lista._id} lista={lista} refresh={changePulledList} allLists={currState.listas} moveCard={moveCard} />)
     }
 
     return (
