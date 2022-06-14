@@ -14,6 +14,16 @@ const BarraNavegacao = props => {
     }
   }
 
+  async function saveBoard(indice) {
+    let el = document.getElementById(props.quadros[indice]._id);
+    let content = el.innerHTML
+    console.log(content)
+    await axios.put("http://localhost:5300/board/" + props.quadros[indice]._id, {
+      titulo:content
+    });
+    props.refresh();
+  }
+
   async function addEmptyBoard() {
     await axios.post("http://localhost:5300/board", {
       titulo:"New Board"
@@ -26,10 +36,13 @@ const BarraNavegacao = props => {
     return props.quadros.map((quadro, indice) => 
       <>
         <a key={indice} className={indice === props.quadro ? "quadro selecionado" : "quadro botoes-navegacao"}
-          onClick={() => props.refresh(indice)}>
+          onClick={() => props.refresh(indice)} contentEditable="true" id={quadro._id}>
               {quadro.titulo}
           </a>
-          <button className="remove-board" onClick={() => removeBoard(indice)}>x</button>
+          <div className="boardEditor">
+          <button className="remove-board button-board" onClick={() => removeBoard(indice)}>x</button>
+          <button className="save-board button-board" onClick={() => saveBoard(indice)}>save</button>
+          </div>
       </>
     )
   }
