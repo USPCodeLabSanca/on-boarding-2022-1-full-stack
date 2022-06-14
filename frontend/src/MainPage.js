@@ -26,7 +26,6 @@ const MainPage = props => {
             let novoQuadro = (newSelected !== undefined) ? newSelected : currState.quadroSelecionado;
             if (novoQuadro < 0) novoQuadro = 0;
             else if (quadros.length > 0 && novoQuadro >= quadros.length) novoQuadro = quadros.length - 1;
-            console.log("new is " + newSelected + " and old is " + currState.quadroSelecionado + " and actual new is " + novoQuadro);
             stateCopy.quadroSelecionado = novoQuadro
 
             setState(stateCopy)

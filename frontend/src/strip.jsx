@@ -1,6 +1,6 @@
 
 
-async function strip(a) {
+function strip(a) {
     const forbidden = ["<br>", ";", "<div>", "</div>", "amp", "gt"];
 
     console.log(a)
