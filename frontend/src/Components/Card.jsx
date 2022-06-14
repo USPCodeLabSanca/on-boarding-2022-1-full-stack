@@ -11,17 +11,16 @@ const Card = props => {
     }
 
     async function saveCard() {
-        console.log("Saving")
+        console.log("Updating card " + props.card._id);
         let tituloVal = document.getElementById("titulo:"+props.card._id).innerHTML;
         let bodyVal = document.getElementById("text:"+props.card._id).innerHTML;
 
         tituloVal = strip(tituloVal)
         bodyVal = strip(bodyVal)
-        console.log("Updating card " + props.card._id);
-        await axios.put("http://localhost:5300/card/"+props.card._id, {
-            "titulo":tituloVal,
-            "descricao":bodyVal
-        });
+        await axios.put("http://localhost:5300/card/" + props.card._id, {
+            "titulo": tituloVal,
+            "descricao": bodyVal
+        })
         props.refresh();
     }
 
