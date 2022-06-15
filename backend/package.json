@@ -17,6 +17,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "bcrypt": "^5.0.1",
     "nodemon": "^2.0.16"
   }
 }

@@ -14,6 +14,7 @@ app.use(morgan('dev'));
 app.use(require("./routes/Board"));
 app.use(require("./routes/Card"));
 app.use(require("./routes/CardList"));
+app.use(require('./routes/auth.router'))
 const PORT = 5300;
 
 mongoose.connect(process.env.CONN_STR, {useNewUrlParser: true, useUnifiedTopology: true});
