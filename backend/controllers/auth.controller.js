@@ -17,8 +17,11 @@ const authController = {
 
         const User = await authService.signin(username, password)
         
-        if(!User) response.status(401).json();
-
+        if(!User){
+            response.status(401).json();
+            console.log(`Passou por aqui!`)
+            return;
+        }
         return response.json(User)
     }
 }
