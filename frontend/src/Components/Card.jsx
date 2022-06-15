@@ -15,8 +15,8 @@ const Card = props => {
         let tituloVal = document.getElementById("titulo:"+props.card._id).innerHTML;
         let bodyVal = document.getElementById("text:"+props.card._id).innerHTML;
 
-        tituloVal = strip(tituloVal)
-        bodyVal = strip(bodyVal)
+        tituloVal = await strip(tituloVal)
+        bodyVal = await strip(bodyVal)
         await axios.put("http://localhost:5300/card/" + props.card._id, {
             "titulo": tituloVal,
             "descricao": bodyVal
